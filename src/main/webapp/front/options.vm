@@ -1,0 +1,82 @@
+#define(Options options)
+
+##传递参数
+#set(boolean optionsClass = true)
+
+#tag block("content")
+    #include ("common/_admin_navbar.vm")
+    <div class="content">
+        <div class="header">
+            <h1 class="page-title">网站信息设置</h1>
+        </div>
+        <ul class="breadcrumb">
+            <li>
+                <a href="${BASE_PATH }admin">首页</a>
+                <span class="divider">/</span>
+            </li>
+            <li class="active">网站信息</li>
+        </ul>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="btn-toolbar">
+                    <button class="btn btn-primary info_btn"><i class="icon-save"> </i>&nbsp;保存</button>
+                    <a href="${BASE_PATH }admin/blog/list" class="btn">返回</a>
+                    <div class="btn-group"></div>
+                </div>
+                <div class="well">
+                    <div id="myTabContent" class="tab-content">
+                        <div id="info" class="tab-pane active">
+                            <form id="info_btn" action="${BASE_PATH }admin/options/save_update" method="post">
+                                <input type="hidden" name="options.id" value="${options.get('id')}"/>
+                                <label>站点名</label>
+                                <input type="text" name="options.site_name" value="${options.get('site_name')}" required="required" class="input-xlarge"/>
+                                <label>域名</label>
+                                <input type="text" name="options.site_url" value="${options.get('site_url')}" required="required" class="input-xlarge"/>
+                                <label>git链接</label>
+                                <input type="text" name="options.git_url" value="${options.get('git_url')}" required="required" class="input-xlarge"/>
+                                <label>cdn</label>
+                                <input type="text" name="options.cdn_path" value="${options.get('cdn_path')}" required="required" class="input-xlarge"/>
+                                <label>Goole作者链接</label>
+                                <input type="text" name="options.google" value="${options.get('google')}" required="required" class="input-xlarge"/>
+                                <label>腾讯微博</label>
+                                <input type="text" name="options.wb_qq" value="${options.get('wb_qq')}" required="required" class="input-xlarge"/>
+                                <label>sina微博</label>
+                                <input type="text" name="options.wb_sina" value="${options.get('wb_sina')}" required="required" class="input-xlarge"/>
+                                <label>多说二级域名</label>
+                                <input type="text" name="options.duoshuo_domain" value="${options.get('duoshuo_domain')}" required="required" class="input-xlarge"/>
+                                <label>备案号</label>
+                                <input type="text" name="options.record_number" value="${options.get('record_number')}" class="input-xlarge"/>
+                                <label>网站版本</label>
+                                <input type="text" name="options.site_version" value="${options.get('site_version')}" required="required" class="input-xlarge"/>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            #include ("common/_admin_footer.vm")
+        </div>
+    </div>
+#end
+
+#tag block("script")
+    <script type="text/javascript">
+        $(function(){
+            $('.info_btn').click(function(){
+                var dialog = $.dialog();
+                _post('#info_btn', dialog, function(data){
+                    if(data.status){
+                        dialog.content('保存成功！').lock().time(1000);
+                        setTimeout(function(){
+                            location.href = "${BASE_PATH }admin/options";
+                        }, 1500);
+                    }else{
+                        dialog.content('服务器忙，请稍候！').lock().time(2000);
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+#end
+
+#include ("layout.vm")
