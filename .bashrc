@@ -28,6 +28,7 @@ export PATH=$PATH:/usr/local/erlang/bin
 #set maven environment
 export MAVEN_HOME=/usr/local/maven-3.5.0/
 export PATH=${MAVEN_HOME}/bin:${PATH}
+
 #set java environment
 export JAVA_HOME=/usr/java/jdk-9
 export PATH=$JAVA_HOME/bin:$PATH
