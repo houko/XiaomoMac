@@ -1,13 +1,5 @@
 #!/usr/bin/env bash
 
-#=============================================================================
-# install.sh --- bootstrap script for XiaomoVim
-# Copyright (c) 2017-2019 xiaomo & Contributors
-# Author: xiaomo <xiaomo@xiaomo.info >
-# URL: https://xiaomo.info
-# License: MIT license
-#=============================================================================
-
 # Reset
 Color_off='\033[0m'       # Text Reset
 Version='0.6.0'
