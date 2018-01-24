@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-
 #=============================================================================
 # install.sh --- bootstrap script for XiaomoVim
 # Copyright (c) 2017-2019 xiaomo & Contributors
