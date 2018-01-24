@@ -7,7 +7,7 @@
 ## 安装 bundles
 由git管理的vim插件：在终端使用vim 打开任意文本文件，之后在vim的命令状态下 run:`:BundleInstall`
 
-## 使用bundle:使用命令如下
+使用bundle:使用命令如下
 - 1: `:BundleClean` 清理所有失效或无用的插件
 - 2: `:BundleInstall` 安装新添加的vim插件
 - 3: `:BundleInstall!` 更新所有插件
