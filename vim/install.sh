@@ -20,14 +20,6 @@ Green='\033[0;32m'
 #System name
 System="$(uname -s)"
 
-# 需要 某个命令
-need_cmd () {
-    if ! hash "$1" &>/dev/null; then
-        error "Need '$1' (command not fount)"
-        exit 1
-    fi
-}
-
 # 消息
 msg() {
     printf '%b\n' "$1" >&2
@@ -56,7 +48,7 @@ warn () {
 
 # 拉取仓库
 fetch_repo () {
-    if [[ -d "$HOME/XiaomoMac" ]]; then
+    if [ -d "$HOME/XiaomoMac" ]; then
         info "Trying to update XiaomoMac"
         git --git-dir "$HOME/XiaomoMac/.git" pull
         success "Successfully update XiaomoMac"
@@ -68,13 +60,13 @@ fetch_repo () {
 }
 
 install_vim () {
-    if [[ -f "$HOME/.vimrc" ]]; then
+    if [ -f "$HOME/.vimrc" ]; then
         mv "$HOME/.vimrc" "$HOME/.vimrc_back"
         success "Backup $HOME/.vimrc to $HOME/.vimrc_back"
     fi
 
-    if [[ -d "$HOME/.vim" ]]; then
-        if [[ "$(readlink $HOME/.vim)" =~ \XiaomoMac$ ]]; then
+    if [ -d "$HOME/.vim" ]; then
+        if [ "$(readlink $HOME/.vim)" =~ \XiaomoMac$ ]; then
             success "Installed XiaomoVim for vim"
         else
             mv "$HOME/.vim" "$HOME/.vim_back"
@@ -90,22 +82,21 @@ install_vim () {
 }
 
 uninstall_vim () {
-    if [[ -d "$HOME/.vim" ]]; then
-        if [[ "$(readlink $HOME/.vim)" =~ \XiaomoMac$ ]]; then
+    if [ -d "$HOME/.vim" ]; then
+        if [ "$(readlink $HOME/.vim)" =~ \XiaomoMac$ ]; then
             rm "$HOME/.vim"
             success "Uninstall XiaomoVim for vim"
-            if [[ -d "$HOME/.vim_back" ]]; then
+            if [ -d "$HOME/.vim_back" ]; then
                 mv "$HOME/.vim_back" "$HOME/.vim"
                 success "Recover from $HOME/.vim_back"
             fi
         fi
     fi
-    if [[ -f "$HOME/.vimrc_back" ]]; then
+    if [ -f "$HOME/.vimrc_back" ]; then
         mv "$HOME/.vimrc_back" "$HOME/.vimrc"
         success "Recover from $HOME/.vimrc_back"
     fi
 }
 
-need_cmd 'git'
 fetch_repo
 install_vim
