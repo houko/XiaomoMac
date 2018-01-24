@@ -72,7 +72,11 @@ install_vim () {
             mv "$HOME/.vim" "$HOME/.vim_back"
             success "BackUp $HOME/.vim to $HOME/.vim_back"
             ln -s "$HOME/XiaomoMac/vim/.vim" "$HOME/.vim"
-            git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+
+            if [ -d "$HOME/.vim/bundle/vundle" ]; then
+                git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+            fi
+
             success "Installed XiaomoVim for vim"
         fi
     else
